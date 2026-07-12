@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from pathlib import Path
 
+from streamlit import dataframe
+
 app = FastAPI(title="Vendor 360 API")
 
 app.add_middleware(
@@ -39,6 +41,10 @@ def clean_search_value(value):
 def load_vendor_data():
     rlh = pd.read_excel(RLH_FILE, sheet_name="Vendor")
     nlh = pd.read_excel(NLH_FILE, sheet_name="Vendor")
+
+
+    print("RLH Columns:", rlh.columns.tolist())
+    print("NLH Columns:", nlh.columns.tolist())
 
     rlh.columns = [
         clean_column_name(col)
@@ -195,43 +201,68 @@ def suggest_vendors(query: str):
         oracle_column = find_oracle_column(dataframe)
 
         for _, row in dataframe.iterrows():
-            vendor_name = ""
 
+            # Vendor Name
+            vendor_name = ""
             for name_column in ["vendor name", "allocation vendor"]:
                 if name_column in dataframe.columns:
                     value = row.get(name_column)
-
                     if not pd.isna(value):
                         vendor_name = str(value).strip()
                         break
 
+            # Oracle ID
             oracle_id = ""
-
             if oracle_column:
                 value = row.get(oracle_column)
-
                 if not pd.isna(value):
                     oracle_id = clean_search_value(value)
 
+            # Email
             email = ""
-
             for email_column in ["vendor email", "email"]:
                 if email_column in dataframe.columns:
                     value = row.get(email_column)
-
                     if not pd.isna(value):
                         email = str(value).strip()
                         break
 
+            # Contact Number
+            contact = ""
+            for contact_column in ["contact details", "phone no"]:
+                if contact_column in dataframe.columns:
+                    value = row.get(contact_column)
+                    if not pd.isna(value):
+                        contact = clean_search_value(value)
+                        break
+
+            # Transporter ID
+            transporter_id = ""
+            for transporter_column in [
+                "transporter id",
+                "vendor id"
+            ]:
+                if transporter_column in dataframe.columns:
+                    value = row.get(transporter_column)
+                    if not pd.isna(value):
+                        transporter_id = str(value).strip()
+                        break
+
+            # Search everything
             searchable_text = (
                 vendor_name.lower()
                 + " "
                 + oracle_id.lower()
                 + " "
                 + email.lower()
+                + " "
+                + contact
+                + " "
+                + transporter_id.lower()
             )
 
             if search_query in searchable_text:
+
                 unique_key = (
                     vendor_name.lower(),
                     oracle_id

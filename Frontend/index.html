@@ -518,7 +518,7 @@ input.addEventListener("input", function () {
     suggestionTimer = setTimeout(async function () {
         try {
             const response = await fetch(
-                `http://127.0.0.1:8000/suggest/${encodeURIComponent(query)}`
+                `https://vendor-360.onrender.com/suggest/${encodeURIComponent(query)}`
             );
 
             const data = await response.json();
@@ -793,7 +793,7 @@ async function searchVendor() {
     try {
 
         const response = await fetch(
-            `http://127.0.0.1:8000/search/${encodeURIComponent(oracleId)}`
+            `https://vendor-360.onrender.com/search/${encodeURIComponent(oracleId)}`
         );
 
 

@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from pathlib import Path
 
-from streamlit import dataframe
 
 app = FastAPI(title="Vendor 360 API")
 

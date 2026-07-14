@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-x
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,54 +9,201 @@ x
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 </head>
 
 <body>
 
-<div class="topbar">
+<header class="topbar">
 
     <div class="brand">
-        <h1>Vendor <span>360</span></h1>
-        <span>Unified Vendor Intelligence Platform</span>
-    </div>
-    <div class="online">
-        ● System Online
-    </div>
 
-</div>
+        <div class="brand-logo">
+            V360
+        </div>
 
-
-<div class="container">
-
-    <div class="hero">
-
-            <div class="hero-badge">
-                Internal Operations Platform
-            </div>
+        <div class="brand-text">
 
             <h1>Vendor 360</h1>
 
-            <p>
-                Unified Vendor Intelligence Platform for Transporter lookup,
-                enabling faster operations, dispute resolution and vendor management.
-            </p>
+            <span>
+                Unified Vendor Intelligence Platform
+            </span>
 
         </div>
 
     </div>
 
+    <div class="topbar-right">
 
-    <div id="suggestions" class="suggestions"></div>
-    <div id="message">
-        Enter an Oracle ID to search the unified vendor database.
+        <div class="online">
+
+            <span class="status-dot"></span>
+
+            System Online
+
+        </div>
+
     </div>
 
+</header>
 
+<main class="container">
+
+    <section class="hero">
+
+        <div class="hero-badge">
+
+            Internal Operations Platform
+
+        </div>
+
+        <h1>
+
+            Search Vendors Across RLH & NLH
+
+        </h1>
+
+        <p>
+
+            A unified vendor search platform built to simplify transporter lookup,
+            vendor verification, dispute resolution and day-to-day operations.
+
+        </p>
+
+    </section>
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon purple">
+
+                <i class="bi bi-truck"></i>
+
+            </div>
+
+            <div class="stat-info">
+
+                <span>RLH Vendors</span>
+
+                <h2 id="rlhCount">--</h2>
+
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue">
+
+                <i class="bi bi-buildings"></i>
+
+            </div>
+
+            <div class="stat-info">
+
+                <span>NLH Vendors</span>
+
+                <h2 id="nlhCount">--</h2>
+
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon green">
+
+                <i class="bi bi-database"></i>
+
+            </div>
+
+            <div class="stat-info">
+
+                <span>Total Vendors</span>
+
+                <h2 id="totalCount">--</h2>
+
+            </div>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="stat-icon orange">
+
+                <i class="bi bi-search"></i>
+
+            </div>
+
+            <div class="stat-info">
+
+                <span>Total Searches</span>
+
+                <h2 id="searchCount">0</h2>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="search-panel">
+
+        <div class="search-title">
+
+            Vendor Search
+
+        </div>
+
+        <div class="search-subtitle">
+
+            Search using Oracle ID, Vendor Name, Email, Mobile Number or Transporter ID.
+
+        </div>
+
+        <div class="search">
+
+            <i class="bi bi-search search-icon"></i>
+
+            <input
+                id="oracleInput"
+                type="text"
+                placeholder="Search by Oracle ID, Vendor Name, Email or Contact..." />
+
+            <button
+                onclick="searchVendor()">
+
+                <i class="bi bi-search"></i>
+
+                Search Vendor
+
+            </button>
+
+        </div>
+
+        <div
+            id="suggestions"
+            class="suggestions">
+        </div>
+
+    </section>
+
+    <div
+        id="message"
+        class="message">
+
+        Search for a vendor to view profile and network details.
+
+    </div>
     <div id="dashboard">
 
         <div class="profile">
@@ -64,135 +212,146 @@ x
 
                 <div>
 
-                    <div
-                        id="vendorName"
-                        class="vendor-name">
+                    <div id="vendorName" class="vendor-name">
+                        Vendor Name
                     </div>
 
-                    <div
-                        id="oracleId"
-                        class="oracle">
+                    <div id="oracleId" class="oracle">
+                        Oracle ID
                     </div>
 
                 </div>
 
-                <div
-                    id="networkCount"
-                    class="network-count">
+                <div id="networkCount" class="network-count">
+
+                    ACTIVE IN 0 NETWORKS
+
                 </div>
 
             </div>
 
+            <hr class="divider">
 
             <div class="section-title">
-                NETWORK PRESENCE
-            </div>
 
+                NETWORK PRESENCE
+
+            </div>
 
             <div class="network-grid">
 
                 <div class="network">
 
                     <div class="network-name">
+
                         RLH
+
                     </div>
 
-                    <div
-                        id="rlhStatus"
-                        class="not-found">
+                    <div id="rlhStatus" class="not-found">
+
                         NOT FOUND
+
                     </div>
 
                 </div>
-
 
                 <div class="network">
 
                     <div class="network-name">
+
                         NLH
+
                     </div>
 
-                    <div
-                        id="nlhStatus"
-                        class="not-found">
+                    <div id="nlhStatus" class="not-found">
+
                         NOT FOUND
+
                     </div>
 
                 </div>
 
             </div>
 
-
             <div class="section-title">
-                UNIFIED CONTACT
-            </div>
 
+                VENDOR CONTACT DETAILS
+
+            </div>
 
             <div class="contact-grid">
 
                 <div class="info-card">
 
                     <div class="label">
-                        Email
+
+                        Email Address
+
                     </div>
 
-                    <div
-                        id="email"
-                        class="value">
-                    </div>
+                    <div id="email" class="value">
 
-                </div>
+                        -
 
-
-                <div class="info-card">
-
-                    <div class="label">
-                        Contact
-                    </div>
-
-                    <div
-                        id="contact"
-                        class="value">
                     </div>
 
                 </div>
 
+                <div class="info-card">
+
+                    <div class="label">
+
+                        Contact Number
+
+                    </div>
+
+                    <div id="contact" class="value">
+
+                        -
+
+                    </div>
+
+                </div>
 
                 <div class="info-card">
 
                     <div class="label">
+
                         Transporter ID
+
                     </div>
 
-                    <div
-                        id="transporterId"
-                        class="value">
+                    <div id="transporterId" class="value">
+
+                        -
+
                     </div>
 
                 </div>
 
             </div>
-
 
             <div class="section-title">
-                SOURCE DETAILS
-            </div>
 
+                SOURCE DETAILS
+
+            </div>
 
             <div
                 id="sourceGrid"
                 class="source-grid">
+
             </div>
 
         </div>
 
     </div>
 
-</div>
-
+</main>
 
 <script src="js/app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

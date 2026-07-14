@@ -3,6 +3,7 @@ const suggestionsBox =
     document.getElementById("suggestions");
 
 let suggestionTimer;
+let totalSearches = 0;
 
 input.addEventListener("input", function () {
     clearTimeout(suggestionTimer);
@@ -265,6 +266,7 @@ async function searchVendor() {
 
     const oracleId =
         input.value.trim();
+    suggestionsBox.style.display = "none";
 
     const message =
         document.getElementById("message");
@@ -284,8 +286,26 @@ async function searchVendor() {
     }
 
 
-    message.innerText =
-        "Searching unified vendor database...";
+    message.innerHTML = `
+    <div class="loading">
+
+        <div class="spinner"></div>
+
+        Searching Vendor Database...
+
+    </div>
+    `;
+    totalSearches++;
+
+    const searchCounter =
+        document.getElementById("searchCount");
+
+    if (searchCounter) {
+
+        searchCounter.innerText =
+            totalSearches;
+
+    }
 
     dashboard.style.display = "none";
 
@@ -458,4 +478,21 @@ async function searchVendor() {
     }
 
 }
+document.addEventListener("DOMContentLoaded", () => {
 
+    const rlh =
+        document.getElementById("rlhCount");
+
+    const nlh =
+        document.getElementById("nlhCount");
+
+    const total =
+        document.getElementById("totalCount");
+
+    if (rlh) rlh.innerText = "--";
+
+    if (nlh) nlh.innerText = "--";
+
+    if (total) total.innerText = "--";
+
+});

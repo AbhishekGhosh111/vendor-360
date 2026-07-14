@@ -219,57 +219,33 @@ body{
 
     text-align:center;
 
-    padding:70px 0 40px;
-
-}
-
-.hero-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    background:#F4F0FF;
-
-    color:var(--primary);
-
-    padding:10px 18px;
-
-    border-radius:999px;
-
-    font-size:14px;
-
-    font-weight:600;
+    padding:24px 0 18px;
 
 }
 
 .hero h1{
 
-    margin-top:26px;
+    margin:0;
 
-    font-size:58px;
+    font-size:40px;
 
-    font-weight:800;
+    font-weight:700;
 
     color:var(--text);
-
-    letter-spacing:-1px;
 
 }
 
 .hero p{
 
-    margin:22px auto 0;
+    margin:10px auto 0;
 
-    max-width:820px;
+    max-width:650px;
 
-    font-size:19px;
+    font-size:16px;
 
     color:var(--secondary);
 
-    line-height:1.8;
+    line-height:1.5;
 
 }
 
@@ -283,9 +259,9 @@ body{
 
     grid-template-columns:repeat(4,1fr);
 
-    gap:22px;
+    gap:18px;
 
-    margin:45px 0 55px;
+    margin:20px 0 24px;
 
 }
 
@@ -293,9 +269,9 @@ body{
 
     background:#fff;
 
-    border-radius:20px;
+    border-radius:18px;
 
-    padding:24px;
+    padding:18px;
 
     display:flex;
 
@@ -323,9 +299,9 @@ body{
 
 .stat-icon{
 
-    width:64px;
+    width:54px;
 
-    height:64px;
+    height:54px;
 
     border-radius:16px;
 
@@ -337,7 +313,7 @@ body{
 
     color:#fff;
 
-    font-size:28px;
+    font-size:22px;
 
 }
 

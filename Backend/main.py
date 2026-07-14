@@ -95,7 +95,7 @@ def detect_match_type(column):
     return column.title()
 
 
-@app.get("/")
+@app.get("/", methods=["GET", "HEAD"])
 def home():
     return {
         "message": "Vendor 360 API is running",
